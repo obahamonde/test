@@ -1,10 +1,12 @@
 FROM python:3.7
 
+ARGS LOCAL_PATH
+
+
 WORKDIR /app
 
-COPY requirements.txt /app
+COPY $LOCAL_PATH /app
 
-RUN pip install --upgrade pip \
-    pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-COPY . /app
+CMD ["aiofauna", "runserver", "--livereload", "--port", "8080"]

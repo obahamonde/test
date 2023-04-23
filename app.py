@@ -1,9 +1,8 @@
-from flask import Flask, jsonify
-
-app = Flask(__name__)
+from aiofauna import Api
 
 
-@app.get('/')
-def container():
-    return jsonify({'message': 'Hello World!'})
+app = Api()
 
+@app.get("/")
+async def index():
+    return {"hello": "world"}
