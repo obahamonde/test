@@ -1,7 +1,6 @@
 FROM python:3.7
 
-ARGS LOCAL_PATH
-
+ARG LOCAL_PATH
 
 WORKDIR /app
 
