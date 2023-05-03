@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.9.7-slim-buster
 
 ARG LOCAL_PATH
 
@@ -8,4 +8,4 @@ COPY $LOCAL_PATH /app
 
 RUN pip install -r requirements.txt
 
-CMD ["adev", "runserver", "--livereload", "--port", "8080"]
+CMD ["python", "main.py"]
