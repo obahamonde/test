@@ -8,4 +8,4 @@ COPY $LOCAL_PATH /app
 
 RUN pip install -r requirements.txt
 
-CMD ["adev", "runserver", "--port", "8080", "--host", "0.0.0.0", "--livereload"]
+CMD ["adev", "runserver", "--port", "8080"]
