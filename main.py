@@ -1,14 +1,27 @@
-from aiofauna import Api
+from aiofauna import Api, FaunaModel, Field
 
+
+class Product(FaunaModel):
+    name: str = Field(...)
+    price: float = Field(...)
+
+    
 app = Api()
 
 @app.get("/")
 async def index():
-    return {"hello": "world"}
+    return {
+        "message": "Hello World!"
+    }
+    
+@app.post("/api/product")
+async def create_product(product: Product):
+    return await product.save()
 
-@app.get("/hello/{name}")
-async def hello(name: str):
-    return {"hello": name}
+@app.get("/api/product")
+async def get_products():
+    return await Product.all()
 
-if __name__ == "__main__":
-    app.run()
+@app.on_event("startup")
+async def on_startup(_):
+    await Product.provision()
